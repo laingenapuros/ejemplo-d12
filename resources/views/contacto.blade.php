@@ -7,10 +7,24 @@
 </head>
 <body>
     <h1> Formulario de contacto</h1>
-    <form action="" method= "POST">
+    <form action="contacto" method= "POST">
+
+    <h3> {{ $tipo }} </h3>  <!-- limpian inserciones de javascript -->
+    <!-- BASE DE DATOS -->
+    
+        <!-- ?php echo $tipo;*/-->
+        @csrf 
         <label for ="correo"> Correo: </label>
-        <label type ="email"> </label>
-        <textarea name="comentario" id="comentario" cols="20" rows = "10"> </textarea> 
+        <input type ="email" 
+        name="correo" 
+        @if ($tipo == 'alumno')
+            value="@alumnos.udg.mx"
+        @else
+            value= "@gmail.com" 
+        @endif> </label>
+        
+        <label for ="comentario"> Comentario: </label>
+        <textarea name="comentario" id="comentario" cols="10" rows = "1"> </textarea> 
         <select name = "tipo" id="">
             <option value = "alumno"> Alumno </option>
             <option value = "empleado"> Empleado </option>
