@@ -7,6 +7,15 @@
 </head>
 <body>
     <h1> Formulario de contacto</h1>
+    @if ($errors->any())
+	<div class="alert alert-danger">
+		<ul>
+		@foreach($errors ->all() as $error)
+		<li> {{$error}} </li>
+		@endforeach
+		</ul>
+	</div>
+@endif
     <form action="contacto" method= "POST">
 
     <h3> {{ $tipo }} </h3>  <!-- limpian inserciones de javascript -->
@@ -15,8 +24,7 @@
         <!-- ?php echo $tipo;*/-->
         @csrf 
         <label for ="correo"> Correo: </label>
-        <input type ="email" 
-        name="correo" 
+        <input type ="text"  name="correo" 
         @if ($tipo == 'alumno')
             value="@alumnos.udg.mx"
         @else

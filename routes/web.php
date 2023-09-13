@@ -1,11 +1,9 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SitioController;
+use App\Http\Controllers\TareaController;
+use App\Models\Contacto;
 use Illuminate\Http\Request; 
-
-
-
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,16 +20,15 @@ Route::get('/', function () {
 });
 
 
-Route::get('/contacto/{tipo?}', function ($tipo = null) {
-    /*dd($tipo);*/
-    /*return view('contacto',compact('tipo'));*/
-    return view('contacto') -> with(['tipo' => $tipo]);
-});
+Route::get('/contacto/{tipo?}', [SitioController::class, 'contactoForm']);
+
+Route::post('/contacto', [SitioController::class, 'contactoSave']);
+
+//Route::get('/tarea', [TareaController::class, 'index']);
+//Route::get('/tarea/create', [TareaController::class, 'create']);
+
+Route::resource('tarea', TareaController::class);
 
 
-Route::post('/contacto', function (Request $request) {
-   /* return "Hola POST formulario";*/
-    /* var_dump($request)*/
-    dd($request->all());  /*mata aplicacion y pasa contenido del parametro */
-});
+
 
